@@ -5,6 +5,7 @@ pipeline{
     }
     stages{
         stage('Build Docker Image'){
+            
             sh "docker build -t taj/dockerwebapp:${DOCKER_TAG}"
         }
     }
