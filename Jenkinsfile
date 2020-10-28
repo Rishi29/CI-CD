@@ -6,14 +6,14 @@ pipeline{
     stages{
         stage('Build Docker Image'){
             steps{
-                sh "sudo docker build . -t taj/dockerwebapp:${DOCKER_TAG}"
+                sh "docker build . -t taj/dockerwebapp:${DOCKER_TAG}"
             }
         }
         stage('DockerHub Push'){
                 steps{
                 withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
-                sh "sudo docker login -u rishi29 -p ${dockerHubPwd}"
-                sh "sudo docker push taj/dockerwebapp:${DOCKER_TAG}"
+                sh "docker login -u rishi29 -p ${dockerHubPwd}"
+                sh "docker push taj/dockerwebapp:${DOCKER_TAG}"
                 }
 }
         }
