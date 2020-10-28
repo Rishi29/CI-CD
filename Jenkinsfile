@@ -9,6 +9,14 @@ pipeline{
                 sh "docker build . -t taj/dockerwebapp:${DOCKER_TAG}"
             }
         }
+        stage('DockerHub Push'){
+                steps{
+                withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
+                sh "docker login -u rishi29 -p ${dockerHubPwd}"
+                sh "docker push taj/dockerwebapp:${DOCKER_TAG}"
+                }
+}
+        }
     }
 }
 
