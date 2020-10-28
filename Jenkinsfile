@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('Build Docker Image'){
             steps{
-                sh "psudo docker build . -t taj/dockerwebapp:${DOCKER_TAG}"
+                sh "sudo docker build . -t taj/dockerwebapp:${DOCKER_TAG}"
             }
         }
         stage('DockerHub Push'){
